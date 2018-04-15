@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "name": "Event 1",
+      "start": "2018-06-01T14:00:00Z",
+      "duration": 45
+    },
+    {
+      "name": "Event 2",
+      "start": "2018-06-01T15:00:00Z",
+      "duration": 60
+    },
+    {
+      "name": "Event 3",
+      "start": "2018-06-01T16:00:00Z",
+      "duration": 45
+    }
+  ]
+}
