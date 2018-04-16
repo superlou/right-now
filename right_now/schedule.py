@@ -33,7 +33,12 @@ class Schedule():
 class Event():
     def __init__(self, name, start=None, duration=None, location_id=None):
         self.name = name
-        self.start = parser.parse(start)
+
+        if isinstance(start, str):
+            self.start = parser.parse(start)
+        else:
+            self.start = start
+
         self.duration = timedelta(minutes=duration)
         self.location_id = location_id
 
@@ -42,7 +47,9 @@ class Event():
         return self.start + self.duration
 
     def active_at(self, now):
-        now = parser.parse(now)
+        if isinstance(now, str):
+            now = parser.parse(now)
+
         return (now >= self.start and now < self.finish)
 
 

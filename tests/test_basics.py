@@ -38,6 +38,7 @@ def test_event_is_active_inclusive_start_exclusive_finish():
     assert event.active_at("2018-06-01T14:45:00Z") == False
     assert event.active_at("2018-06-01T14:45:01Z") == False
 
+    assert event.active_at(parser.parse("2018-06-01T14:00:00Z")) == True
 
 def test_loaded_schedule_locations_count():
     schedule = Schedule('tests/basic.json')
@@ -63,5 +64,9 @@ def test_get_events_in_location():
 def test_get_active():
     schedule = Schedule('tests/basic.json')
     events = schedule.events_at("2018-06-01T15:20:00Z")
+    assert len(events) == 1
+    assert events[0].name == 'Event 2'
+
+    events = schedule.events_at(parser.parse("2018-06-01T15:20:00Z"))
     assert len(events) == 1
     assert events[0].name == 'Event 2'
