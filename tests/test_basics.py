@@ -37,3 +37,24 @@ def test_event_is_active_inclusive_start_exclusive_finish():
     assert event.active_at("2018-06-01T14:30:00Z") == True
     assert event.active_at("2018-06-01T14:45:00Z") == False
     assert event.active_at("2018-06-01T14:45:01Z") == False
+
+
+def test_loaded_schedule_locations_count():
+    schedule = Schedule('tests/basic.json')
+    assert len(schedule.locations) == 2
+
+
+def test_loaded_schedule_locations_info():
+    schedule = Schedule('tests/basic.json')
+    assert schedule.locations[0].name == "Room 1"
+    assert schedule.locations[1].name == "Room 2"
+
+
+def test_get_events_in_location():
+    schedule = Schedule('tests/basic.json')
+
+    events = schedule.with_location_name('Room 1')
+    assert len(events) == 2
+
+    events = schedule.with_location_name('Room 2')
+    assert len(events) == 1
