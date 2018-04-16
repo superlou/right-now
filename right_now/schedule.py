@@ -25,6 +25,11 @@ class Schedule():
         return [event for key, event in self.events.items()
                 if self.locations[event.location_id].name == name]
 
+    def events_at(self, time):
+        return [event for id, event in self.events.items()
+                if event.active_at(time)]
+
+
 class Event():
     def __init__(self, name, start=None, duration=None, location_id=None):
         self.name = name

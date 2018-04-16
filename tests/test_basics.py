@@ -58,3 +58,10 @@ def test_get_events_in_location():
 
     events = schedule.with_location_name('Room 2')
     assert len(events) == 1
+
+
+def test_get_active():
+    schedule = Schedule('tests/basic.json')
+    events = schedule.events_at("2018-06-01T15:20:00Z")
+    assert len(events) == 1
+    assert events[0].name == 'Event 2'
